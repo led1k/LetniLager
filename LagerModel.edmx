@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Magomedov.LagerModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accounting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateGame" Type="date" Nullable="false" />
+          <Property Name="IdGroup" Type="int" Nullable="false" />
+          <Property Name="IdTypeCompetition" Type="int" Nullable="false" />
+          <Property Name="Evalution" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ddirection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdSpecial" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="specialty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TtypeCompetition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdDdirection" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_accounting_group">
+          <End Role="group" Type="Self.group" Multiplicity="1" />
+          <End Role="accounting" Type="Self.accounting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="accounting">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_accounting_TtypeCompetition">
+          <End Role="TtypeCompetition" Type="Self.TtypeCompetition" Multiplicity="1" />
+          <End Role="accounting" Type="Self.accounting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TtypeCompetition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="accounting">
+              <PropertyRef Name="IdTypeCompetition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_group_specialty">
+          <End Role="specialty" Type="Self.specialty" Multiplicity="1" />
+          <End Role="group" Type="Self.group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialty">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="IdSpecial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TtypeCompetition_Ddirection">
+          <End Role="Ddirection" Type="Self.Ddirection" Multiplicity="1" />
+          <End Role="TtypeCompetition" Type="Self.TtypeCompetition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ddirection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TtypeCompetition">
+              <PropertyRef Name="IdDdirection" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище MagomedovLagerModelContainer">
+          <EntitySet Name="accounting" EntityType="Self.accounting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ddirection" EntityType="Self.Ddirection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="group" EntityType="Self.group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="specialty" EntityType="Self.specialty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TtypeCompetition" EntityType="Self.TtypeCompetition" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_accounting_group" Association="Self.FK_accounting_group">
+            <End Role="group" EntitySet="group" />
+            <End Role="accounting" EntitySet="accounting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_accounting_TtypeCompetition" Association="Self.FK_accounting_TtypeCompetition">
+            <End Role="TtypeCompetition" EntitySet="TtypeCompetition" />
+            <End Role="accounting" EntitySet="accounting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_group_specialty" Association="Self.FK_group_specialty">
+            <End Role="specialty" EntitySet="specialty" />
+            <End Role="group" EntitySet="group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TtypeCompetition_Ddirection" Association="Self.FK_TtypeCompetition_Ddirection">
+            <End Role="Ddirection" EntitySet="Ddirection" />
+            <End Role="TtypeCompetition" EntitySet="TtypeCompetition" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Magomedov.LagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accounting" EntityType="Magomedov.LagerModel.accounting" />
+          <EntitySet Name="Ddirection" EntityType="Magomedov.LagerModel.Ddirection" />
+          <EntitySet Name="group" EntityType="Magomedov.LagerModel.group" />
+          <EntitySet Name="specialty" EntityType="Magomedov.LagerModel.specialty" />
+          <EntitySet Name="TtypeCompetition" EntityType="Magomedov.LagerModel.TtypeCompetition" />
+          <AssociationSet Name="FK_accounting_group" Association="Magomedov.LagerModel.FK_accounting_group">
+            <End Role="group" EntitySet="group" />
+            <End Role="accounting" EntitySet="accounting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_accounting_TtypeCompetition" Association="Magomedov.LagerModel.FK_accounting_TtypeCompetition">
+            <End Role="TtypeCompetition" EntitySet="TtypeCompetition" />
+            <End Role="accounting" EntitySet="accounting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TtypeCompetition_Ddirection" Association="Magomedov.LagerModel.FK_TtypeCompetition_Ddirection">
+            <End Role="Ddirection" EntitySet="Ddirection" />
+            <End Role="TtypeCompetition" EntitySet="TtypeCompetition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_group_specialty" Association="Magomedov.LagerModel.FK_group_specialty">
+            <End Role="specialty" EntitySet="specialty" />
+            <End Role="group" EntitySet="group" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="accounting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateGame" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdGroup" Type="Int32" Nullable="false" />
+          <Property Name="IdTypeCompetition" Type="Int32" Nullable="false" />
+          <Property Name="Evalution" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <NavigationProperty Name="group" Relationship="Magomedov.LagerModel.FK_accounting_group" FromRole="accounting" ToRole="group" />
+          <NavigationProperty Name="TtypeCompetition" Relationship="Magomedov.LagerModel.FK_accounting_TtypeCompetition" FromRole="accounting" ToRole="TtypeCompetition" />
+        </EntityType>
+        <EntityType Name="Ddirection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TtypeCompetition" Relationship="Magomedov.LagerModel.FK_TtypeCompetition_Ddirection" FromRole="Ddirection" ToRole="TtypeCompetition" />
+        </EntityType>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdSpecial" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="accounting" Relationship="Magomedov.LagerModel.FK_accounting_group" FromRole="group" ToRole="accounting" />
+          <NavigationProperty Name="specialty" Relationship="Magomedov.LagerModel.FK_group_specialty" FromRole="group" ToRole="specialty" />
+        </EntityType>
+        <EntityType Name="specialty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="group" Relationship="Magomedov.LagerModel.FK_group_specialty" FromRole="specialty" ToRole="group" />
+        </EntityType>
+        <EntityType Name="TtypeCompetition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdDdirection" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="accounting" Relationship="Magomedov.LagerModel.FK_accounting_TtypeCompetition" FromRole="TtypeCompetition" ToRole="accounting" />
+          <NavigationProperty Name="Ddirection" Relationship="Magomedov.LagerModel.FK_TtypeCompetition_Ddirection" FromRole="TtypeCompetition" ToRole="Ddirection" />
+        </EntityType>
+        <Association Name="FK_accounting_group">
+          <End Type="Magomedov.LagerModel.group" Role="group" Multiplicity="1" />
+          <End Type="Magomedov.LagerModel.accounting" Role="accounting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="accounting">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_accounting_TtypeCompetition">
+          <End Type="Magomedov.LagerModel.TtypeCompetition" Role="TtypeCompetition" Multiplicity="1" />
+          <End Type="Magomedov.LagerModel.accounting" Role="accounting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TtypeCompetition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="accounting">
+              <PropertyRef Name="IdTypeCompetition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TtypeCompetition_Ddirection">
+          <End Type="Magomedov.LagerModel.Ddirection" Role="Ddirection" Multiplicity="1" />
+          <End Type="Magomedov.LagerModel.TtypeCompetition" Role="TtypeCompetition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ddirection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TtypeCompetition">
+              <PropertyRef Name="IdDdirection" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_group_specialty">
+          <End Type="Magomedov.LagerModel.specialty" Role="specialty" Multiplicity="1" />
+          <End Type="Magomedov.LagerModel.group" Role="group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialty">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="IdSpecial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MagomedovLagerModelContainer" CdmEntityContainer="LagerEntities">
+          <EntitySetMapping Name="accounting">
+            <EntityTypeMapping TypeName="Magomedov.LagerModel.accounting">
+              <MappingFragment StoreEntitySet="accounting">
+                <ScalarProperty Name="Evalution" ColumnName="Evalution" />
+                <ScalarProperty Name="IdTypeCompetition" ColumnName="IdTypeCompetition" />
+                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+                <ScalarProperty Name="DateGame" ColumnName="DateGame" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ddirection">
+            <EntityTypeMapping TypeName="Magomedov.LagerModel.Ddirection">
+              <MappingFragment StoreEntitySet="Ddirection">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="group">
+            <EntityTypeMapping TypeName="Magomedov.LagerModel.group">
+              <MappingFragment StoreEntitySet="group">
+                <ScalarProperty Name="IdSpecial" ColumnName="IdSpecial" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="specialty">
+            <EntityTypeMapping TypeName="Magomedov.LagerModel.specialty">
+              <MappingFragment StoreEntitySet="specialty">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TtypeCompetition">
+            <EntityTypeMapping TypeName="Magomedov.LagerModel.TtypeCompetition">
+              <MappingFragment StoreEntitySet="TtypeCompetition">
+                <ScalarProperty Name="IdDdirection" ColumnName="IdDdirection" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

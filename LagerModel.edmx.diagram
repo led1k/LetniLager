@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d298c0e37704dcba72f2299ac5a3702" Name="Diagram1">
+        <EntityTypeShape EntityType="Magomedov.LagerModel.accounting" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="Magomedov.LagerModel.Ddirection" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="Magomedov.LagerModel.group" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="Magomedov.LagerModel.specialty" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="Magomedov.LagerModel.TtypeCompetition" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="Magomedov.LagerModel.FK_accounting_group" />
+        <AssociationConnector Association="Magomedov.LagerModel.FK_accounting_TtypeCompetition" />
+        <AssociationConnector Association="Magomedov.LagerModel.FK_TtypeCompetition_Ddirection" />
+        <AssociationConnector Association="Magomedov.LagerModel.FK_group_specialty" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

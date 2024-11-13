@@ -1,0 +1,36 @@
+﻿<Page x:Class="LetniLager.PageMain.PageCompetitions"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LetniLager.PageMain"
+      mc:Ignorable="d" 
+      d:DesignHeight="760" d:DesignWidth="1000"
+      Title="PageCompetitions">
+
+    <Grid>
+
+        <StackPanel Grid.Column="1" Orientation="Vertical" 
+                    Margin="5" Width="500">
+
+            <TextBlock Text="Введите соревнование:" FontSize="36"
+                    Width="400" Margin="50"/>
+
+            <TextBox Name="TxbCompetitions" FontSize="36"
+                   Width="400" Height="50" Margin="50" TextChanged="TxbCompetitions_TextChanged"/>
+
+            <TextBlock Text="Выберите его вид:" FontSize="36"
+                     Width="400" Margin="50"/>
+
+            <ComboBox Name="CmbVidCompetitions" FontSize="34"           
+                    Width="400" Height="50" Margin="5" 
+                      SelectionChanged="CmbVidCompetitions_SelectionChanged"/>
+
+
+            <Button x:Name="AddCompetitions" Content="Добавить" FontSize="34"
+                  Width="400" Height="60" Margin="50" 
+                  Click="AddCompetitions_Click"/>
+
+        </StackPanel>
+    </Grid>
+</Page>
